@@ -19,6 +19,7 @@ RUN apt-get update -q && \
 	rm -f /tmp/composer-setup.* && \
 	mkdir /app && \
 	mkdir /root/.config && \
+	mkdir /root/.ssh && \
 	git clone https://github.com/stemwinder/locomotive /app && \
 	git clone https://github.com/arfoll/unrarall /unrarall && \
 	chmod u+x /app/locomotive && \
