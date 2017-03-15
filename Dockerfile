@@ -22,6 +22,7 @@ RUN apt-get update -q && \
 	git clone https://github.com/stemwinder/locomotive /app && \
 	git clone https://github.com/arfoll/unrarall /unrarall && \
 	chmod u+x /app/locomotive && \
+	chmod u+x /unrarall/unrarall && \
 	cd /app && \
 	composer install --no-interaction
 	
