@@ -6,6 +6,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV APTLIST="cron curl php5 php5-sqlite lftp libssh2-php sqlite3 apache2 libapache2-mod-php5 iftop git"
 
 ADD crontab /etc/cron.d/locomotive-cron
+ADD setup.sh /root/setup.sh
+
 RUN apt-get update -q && \
 	apt-get install $APTLIST -qy && \
 	apt-get clean && rm -rf /tmp/* /var/lib/apt/lists/* /var/tmp/* && \
@@ -24,9 +26,11 @@ RUN apt-get update -q && \
 	git clone https://github.com/arfoll/unrarall /unrarall && \
 	chmod u+x /app/locomotive && \
 	chmod u+x /unrarall/unrarall && \
+	chmod u+x /root/setup.sh && \
 	cd /app && \
 	composer install --no-interaction && \
 	ssh-keyscan $(printenv REMOTE_SERVER) >> /root/.ssh/known_hosts
-	
-CMD /usr/sbin/apache2ctl -D FOREGROUND
+
+ENTRYPOINT ["./root/script.sh"]
+CMD ["./root/script.sh"]
 VOLUME ["/config", "/target", "/tmp"]
