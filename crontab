@@ -1,2 +1,1 @@
 */5 * * * * cd /app && ./locomotive -vvv $(printenv REMOTE_SERVER) >> /root/.config/locomotive-cron.log 2>&1
-@reboot ssh-keyscan $(printenv REMOTE_SERVER) >> /root/.ssh/known_hosts

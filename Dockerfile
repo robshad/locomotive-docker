@@ -25,7 +25,8 @@ RUN apt-get update -q && \
 	chmod u+x /app/locomotive && \
 	chmod u+x /unrarall/unrarall && \
 	cd /app && \
-	composer install --no-interaction
+	composer install --no-interaction && \
+	ssh-keyscan $(printenv REMOTE_SERVER) >> /root/.ssh/known_hosts
 	
 CMD /usr/sbin/apache2ctl -D FOREGROUND
 VOLUME ["/config", "/target", "/tmp"]
