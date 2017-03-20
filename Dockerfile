@@ -28,8 +28,7 @@ RUN apt-get update -q && \
 	chmod u+x /unrarall/unrarall && \
 	chmod u+x /root/setup.sh && \
 	cd /app && \
-	composer install --no-interaction && \
-	ssh-keyscan $(printenv REMOTE_SERVER) >> /root/.ssh/known_hosts
+	composer install --no-interaction
 
 ENTRYPOINT ["./root/script.sh"]
 CMD ["./root/script.sh"]
